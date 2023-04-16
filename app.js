@@ -1,5 +1,5 @@
 async function getData (selected_major) {
-    var response = await fetch ('cit5students.json');  //This is a GET request
+    var response = await fetch ('cit5students.json');
 
     if (response.ok) {
         var data = await response.json(); 
@@ -8,11 +8,11 @@ async function getData (selected_major) {
         major_items = data.filter((item) => item.major == selected_major);
 
         var templateText = document.getElementById ('majorTemplate').innerHTML; 
-        var compiledTemplateText = Handlebars.compile (templateText); //get and complile template
-        compiledHtml = compiledTemplateText ({ rows: major_items})  ///apply data to template
-        document.getElementById ('majorTable').innerHTML = compiledHtml;
+        var compiledTemplateText = Handlebars.compile (templateText);
+        compiledHtml = compiledTemplateText ({ rows: major_items})
+        document.getElementById ('majorsTable').innerHTML = compiledHtml;
     }
     else {
-        document.querySelector ('#majorTable').innerHTML = "There was an error, or menu item no longer exists"
+        document.querySelector ('#majorsTable').innerHTML = "There was an error or student no longer exists"
     }
 }
