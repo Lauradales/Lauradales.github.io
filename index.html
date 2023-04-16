@@ -1,10 +1,9 @@
 <!DOCTYPE html><html>
 <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1">
+  
     <title>Filter by Major</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-
-      <!-- bootstrap, need to use https for these links -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -12,11 +11,12 @@
     <style> .btn{margin: 5px} </style>
 </head>
 <body>
+
   <div class="container">
       <h2>Select a Major</h2>
       <div style='padding: 5px;'> 
-         <button type='button' class="btn btn-primary" onClick="getData('Cit')">CIT Majors</button> 
-         <button type='button' class="btn btn-primary" onClick="getData('Bus')">Business Majors</button> 
+         <button type='button' class="btn btn-primary" onClick="getData('CIT')">CIT Majors</button> 
+         <button type='button' class="btn btn-primary" onClick="getData('BUS')">Business Majors</button> 
       </div>
   
   <h3>We filter our dataset by major</h3>
@@ -25,7 +25,7 @@
   </div>   <!-- end class='container'   -->
   </body>
 
- <!-- Handlebars template -->
+ {# <!-- Handlebars template -->
   <script type="text/x-handlebars-template" id="majorTemplate">
       <table class="table table-striped">
           <tr><th>Name</th><th>Major</th><th>Midterm</th><th>Final</th></tr>
@@ -37,27 +37,7 @@
       </table>
   </script>
 
-  <script src = 'app.js'></script>  <!--application for ajax code-->
+  <script src = 'app.js'></script>  <!--application for ajax code--> #}
 
-  <!-- application ajax code -->
-  <script>
-    async function getData(selected_major) {
-        var response = await fetch('major_items.json');   // this is an ajax GET request
 
-        if(response.ok) {
-            var data = await response.json();
-
-            major_items = data.filter( (item) => item.major == selected_major );    // filter data array for selected meal items 
-                
-           var templateText = document.getElementById('majorTemplate').innerHTML;
-           var compiledTemplateText = Handlebars.compile(templateText);   // get and compile template code
-           compiledHtml = compiledTemplateText({ rows: major_items })      // apply data to template
-           document.getElementById('majorTable').innerHTML = compiledHtml; 
-       }
-       else {
-           document.querySelector('#majorTable').innerHTML = "There was an error, or student not found";
-       }	
- 
-  }
-</script>
 </html>
