@@ -26,7 +26,7 @@
 
 <div id="ticketApp">
 
-    <h2>Tickets July 4, 2014, 25 miles per hour or over</h2>
+    <h2>Tickets July 4, 2014: 25 miles per hour or over</h2>
          
          <table class="table table-bordered table-striped">
              <tr>
@@ -65,7 +65,7 @@
                    this.tickets = data.filter (item => item.mph > this.mphThreshold)     
                }
            },
-           
+
            computed: {
             filteredTickets() {
                 return this.tickets.filter(item => item.mph > this.mphThreshold)
