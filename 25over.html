@@ -50,34 +50,25 @@
 
 
 <script>
-      let app = Vue.createApp({
-           data() {
-               return {
-                   tickets: [],
-                   mphThreshold: 90
-               }
-           },
-
-           methods: {
-               async getData() {
-                   const response = await fetch('tickets1.json')
-                   const data = await response.json()
-                   this.tickets = data.filter (item => item.mph > this.mphThreshold)     
-               }
-           },
-
-           computed: {
-            filteredTickets() {
-                return this.tickets.filter(item => item.mph > this.mphThreshold)
+ <script>
+       let app = Vue.createApp({
+            data() {
+                return {
+                    tickets: [],
+                }
+            },
+            created() {
+                this.getData()
+            },
+            methods: {
+                async getData() {
+                    const response = await fetch('tickets1.json')
+                    this.tickets = await response.json()   
+                },
             }
-           },
-       mounted() {
-        this.getData()
-       }
-     })
-     
-     app.mount('#ticketApp')
-         
+          })
+      
+      app.mount('#ticketApp')   
 
 </script>
 </body></html>
