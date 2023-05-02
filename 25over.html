@@ -71,10 +71,7 @@
             filteredTickets() {
                 return this.tickets.filter(item => item.mph > this.mphThreshold)
             }
-           },
-       mounted() {
-        this.getData()
-       }
+           }, 
      })
      
      app.mount('#ticketApp')
