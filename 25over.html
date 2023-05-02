@@ -26,69 +26,55 @@
 
 <div id="ticketApp">
 
-    <div style = 'padding: 5px;'>
-
-        <select v-on:change="getData()" v-model="filter">
-            <option value="all">Get All Tickets</option>
-            <option value="Male">Get Male Offenders</option>
-            <option value="Female">Get Female Offenders</option>
-            <option value="90plus">Get 90 MPH</option>
-            <option value="16to21yo">Get 16 to 21 Year Olds</option>
-        </select> Select a menu
-
-    </div>
-
-    <div v-show="showTable">
-        <h2>Tickets</h2>
-        <table class="table table-bordered table-striped">
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Actual Speed</th>
-                    <th>Posted Speed</th>
-                    <th>MPH Over</th>
-                    <th>Age</th>
-                    <th>Sex</th>
-                </tr>
-                <tr v-for = "ticket in violation">
-                    <td>{{ticket.stop_date}}</td>
-                    <td>{{ticket.stop_time}}</td>
-                    <td>{{ticket.actual_speed}}</td>
-                    <td>{{ticket.posted_speed}}</td>
-                    <td>{{ticket.mph_over}}</td>
-                    <td>{{ticket.ticket_age}}</td>
-                    <td>{{ticket.ticket.violator_sex}}</td>
-                </tr>
+    <h2>Tickets July 4, 2014, Minneapolis/St. Paul</h2>
+         
+         <table class="table table-bordered table-striped">
+             <tr>
+                 <th>Ticket ID</th>
+                 <th>Time</th>
+                 <th>Posted Speed</th>
+                 <th>MPH Over</th>
+                 <th>Violator Sex</th>
+             </tr>
+             <tr v-for = "ticket in tickets">
+                 <td>{{ticket.tid}}</td>
+                 <td>{{ticket.stop_time}}</td>
+                 <td>{{ticket.posted_speed}}</td>
+                 <td>{{ticket.actual_speed - ticket.posted_speed}}</td> 
+                 <td>{{ticket.violator_sex}}</td>
+             </tr>
         </table>
-    </div>
+ 
+</div>   <!-- end gpaApp -->
+</div>   <!-- end class= 'container' -->
 
-    </div>
-    </div>
 
-    <script>
-
-let app = Vue.createApp ({
-    data () {
-        return {
-            violations: [],
-            filter: '',
-            showTable: false 
-        }
-    },
-    methods: {
-        async getData() {
-            this.showTable = true
-            const response = await fetch('/showAllTickets?choice=' + this.filter)
-
-            this.violations = await response.json()
-            console.log(this.violations)
-        },
-    }
-
-})
-      
-      app.mount('#ticketApp')   //in which div to mount the vue app
-		  
+<script>
+      let app = Vue.createApp({
+           data() {     // returns an object of data
+               return {
+                   tickets: [],           // array to hold student data
+                   mphThreshold: 90
+               }
+           },
+           created() {      // section executes as page loads
+               this.getData()  // load json data as page loads
+           },
+           methods: {    // ajax request
+               async getData() {
+                   const response = await fetch('tickets1.json')
+                   this.tickets = data.filter (item => item.mph > this.mphThreshold)     
+               }
+           },
+           computed: {
+            filteredTickets() {
+                return this.tickets.filter(item => item.mph > this.mphThreshold)
+            }
+           }
+         })
+     
+     app.mount('#ticketApp')
+         
 
 </script>
 </body></html>
