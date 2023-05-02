@@ -13,20 +13,20 @@
 <nav class="navbar navbar-inverse">
 
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">Our Website</a>
+        <a class="navbar-brand" href="#">Welcome!</a>
     </div>
     <div>
        <ul class="nav navbar-nav">
            <li class="active"><a href="index.html">All Tickets</a></li>
-           <li><a href="25over.html">25mph or move over</a></li>
+           <li><a href="25over.html">25mph or over</a></li>
        </ul>
     </div>
 
-</nav>    <!-- end nav-bar -->
+</nav>
 
 <div id="ticketApp">
 
-    <h2>Tickets July 4, 2014, Over 25 Miles Per Hours</h2>
+    <h2>Tickets July 4, 2014, Over 25 miles per hour or over</h2>
          
          <table class="table table-bordered table-striped">
              <tr>
@@ -45,22 +45,22 @@
              </tr>
         </table>
  
-</div>   <!-- end gpaApp -->
-</div>   <!-- end class= 'container' -->
+</div>
+</div>
 
 
 <script>
       let app = Vue.createApp({
-           data() {     // returns an object of data
+           data() {
                return {
-                   tickets: [],           // array to hold student data
+                   tickets: [],
                    mphThreshold: 90
                }
            },
-           created() {      // section executes as page loads
-               this.getData()  // load json data as page loads
+           created() {
+               this.getData()
            },
-           methods: {    // ajax request
+           methods: {
                async getData() {
                    const response = await fetch('tickets1.json')
                    this.tickets = data.filter (item => item.mph > this.mphThreshold)     
