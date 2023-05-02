@@ -57,9 +57,7 @@
                    mphThreshold: 90
                }
            },
-           created() {
-               this.getData()
-           },
+
            methods: {
                async getData() {
                    const response = await fetch('tickets1.json')
@@ -67,6 +65,7 @@
                    this.tickets = data.filter (item => item.mph > this.mphThreshold)     
                }
            },
+           
            computed: {
             filteredTickets() {
                 return this.tickets.filter(item => item.mph > this.mphThreshold)
