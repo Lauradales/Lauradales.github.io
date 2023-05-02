@@ -64,7 +64,7 @@
              async getData() {
                  const response = await fetch('tickets1.json');
                  this.tickets = await response.json();  
-                 this.tickets = this.tickets.filter(item => item.mph > this.mphThreshold);
+                 this.tickets = this.tickets.filter(item => (item.actual_speed - item.posted_speed) > this.mphThreshold);
              },
          }
        })
