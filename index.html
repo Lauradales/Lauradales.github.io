@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><title>speeding tickets</title>
+<html><head><title>Speeding Tickets</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -13,7 +13,7 @@
 <nav class="navbar navbar-inverse">
 
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">Our Website</a>
+        <a class="navbar-brand" href="#">Welcome!</a>
     </div>
     <div>
        <ul class="nav navbar-nav">
@@ -22,7 +22,7 @@
        </ul>
     </div>
 
-</nav>    <!-- end nav-bar -->
+</nav>
 
 <div id="ticketApp">
 
@@ -45,29 +45,28 @@
               </tr>
          </table>
   
-</div>   <!-- end gpaApp -->
-</div>   <!-- end class= 'container' -->
+</div>
+</div>
 
 <script>
        let app = Vue.createApp({
-            data() {     // returns an object of data
+            data() {
                 return {
-                    tickets: [],           // array to hold student data
+                    tickets: [],
                 }
             },
-            created() {      // section executes as page loads
-                this.getData()  // load json data as page loads
+            created() {
+                this.getData()
             },
-            methods: {    // ajax request
+            methods: {
                 async getData() {
                     const response = await fetch('tickets1.json')
-                    this.tickets = await response.json()
-                    //tickets = data.filter( (item) => item.major == majSelect );     
+                    this.tickets = await response.json()   
                 },
             }
           })
       
-      app.mount('#ticketApp')   //in which div to mount the vue app
+      app.mount('#ticketApp')
 		  
 
 </script>
